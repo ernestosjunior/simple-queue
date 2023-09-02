@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  web:
+    build: src/.
+    ports:
+      - "3000:3000"
+      - "5859:5859"
+    volumes:
+      - ./:/queuebull
+    networks:
+      - queue-network
+    working_dir: /queuebull
+    command: sh -c "npm install && cd src && nodemon app.js"
+    depends_on:
+      - redis
+    container_name: web
+  redis:
+    build: redis/.
+    ports:
+      - "6379:6379"
+    networks:
+      - queue-network
+    container_name: redis
+
+networks:
+  queue-network:
+    driver: bridge

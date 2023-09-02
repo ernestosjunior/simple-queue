@@ -11,7 +11,7 @@ services:
     networks:
       - queue-network
     working_dir: /queuebull
-    command: sh -c "npm install && cd src && nodemon app.js"
+    command: sh -c "npm install && cd src && nodemon index.js"
     depends_on:
       - redis
     container_name: web

@@ -23,6 +23,8 @@ app.use(express.json());
 
 app.use(cors());
 
+app.use('/admin/queues', serverAdapter.getRouter());
+
 app.get("/", async (_, res) => {
   return res.json({ message: "Ok" });
 });

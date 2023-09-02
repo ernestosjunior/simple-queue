@@ -39,4 +39,4 @@ Queue.process(async () => {
   return controllers.decrementOnInventory();
 });
 
-app.listen(5000, () => console.log(`Server is running on PORT 5000`));
+app.listen(3000, () => console.log(`Server is running on PORT 3000`));

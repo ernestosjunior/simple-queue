@@ -11,6 +11,8 @@ const Queue = new Bull("Queue", {
 
 const app = express();
 
+app.use(express.json());
+
 app.use(cors());
 
 app.get("/", async (_, res) => {

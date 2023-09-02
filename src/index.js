@@ -2,12 +2,20 @@ const express = require("express");
 const cors = require("cors");
 const db = require("./database");
 const controllers = require("./controllers");
+const { ExpressAdapter } = require("@bull-board/express");
+const { createBullBoard } = require("@bull-board/api");
+const { BullAdapter } = require("@bull-board/api/bullAdapter");
 
 const Bull = require("bull");
 
 const Queue = new Bull("Queue", {
   redis: { port: 6379, host: "redis" },
 });
+
+const serverAdapter = new ExpressAdapter();
+serverAdapter.setBasePath("/admin/queues");
+
+createBullBoard({ queues: [new BullAdapter(Queue)], serverAdapter });
 
 const app = express();
 

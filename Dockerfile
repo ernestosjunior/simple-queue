@@ -12,7 +12,7 @@ RUN apt-get update \
         libfontconfig \
         curl
 
-RUN npm install --prod
+RUN npm install
 
 RUN echo "America/Sao_Paulo" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
 

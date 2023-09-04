@@ -2,7 +2,8 @@ version: "3"
 
 services:
   web:
-    build: .
+    build: ./
+    restart: always
     ports:
       - "3000:3000"
       - "5859:5859"
@@ -11,7 +12,6 @@ services:
     networks:
       - queue-network
     working_dir: /queuebull
-    command: sh -c "npm install && cd src && nodemon index.js"
     depends_on:
       - redis
     container_name: web
@@ -30,6 +30,8 @@ services:
     build: ./nginx
     ports:
       - 80:80
+    networks:
+      - queue-network
 
 networks:
   queue-network:

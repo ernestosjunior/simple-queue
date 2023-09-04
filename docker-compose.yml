@@ -2,7 +2,7 @@ version: "3"
 
 services:
   web:
-    build: src/.
+    build: .
     ports:
       - "3000:3000"
       - "5859:5859"
@@ -25,8 +25,7 @@ services:
   nginx:
     container_name: nginx
     depends_on:
-      - backend
-      - frontend
+      - web
     restart: always
     build: ./nginx
     ports:

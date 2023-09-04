@@ -22,6 +22,15 @@ services:
     networks:
       - queue-network
     container_name: redis
+  nginx:
+    container_name: nginx
+    depends_on:
+      - backend
+      - frontend
+    restart: always
+    build: ./nginx
+    ports:
+      - 80:80
 
 networks:
   queue-network:

@@ -3,7 +3,10 @@ FROM node:latest
 RUN mkdir app
 WORKDIR /app
 
+RUN npm i -g pm2
+
 COPY package*.json ./
+COPY pm2.json ./
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -20,4 +23,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["/bin/bash","/app/entrypoint.sh"]
+CMD ["pm2-runtime","start", "pm2.json"]

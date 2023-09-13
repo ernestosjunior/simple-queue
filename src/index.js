@@ -43,7 +43,7 @@ app.get("/inventory", async (_, res) => {
 app.post("/update-inventory", controllers.updateInventory);
 
 app.post("/decrement-inventory", (_, res) => {
-  Queue.add();
+  Queue.add({}, {delay: 500});
   return res.sendStatus(200);
 });
 
